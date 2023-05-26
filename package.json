@@ -1,0 +1,27 @@
+{
+  "name": "crudproductstypescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engSoftwareUFMA/crudProductsTypescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engSoftwareUFMA/crudProductsTypescript/issues"
+  },
+  "homepage": "https://github.com/engSoftwareUFMA/crudProductsTypescript#readme",
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.1"
+  },
+  "dependencies": {
+    "tsx": "^3.12.7"
+  }
+}
