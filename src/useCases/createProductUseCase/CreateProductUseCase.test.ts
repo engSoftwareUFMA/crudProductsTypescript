@@ -4,13 +4,13 @@ import { CreateProductUseCase } from './CreateProductUseCase'
 
 
 describe("Create Product Use Case", () => {
-  test("Should be able to create a new product", () => {
+  test("Should be able to create a new product", async () => {
     const productRepository = new ProductRepository();
     const createProductUseCase = new CreateProductUseCase(productRepository);
 
     const productData = { name: "Product Name", description: "Product Description", price: 1000 };
 
-    const createdProduct = createProductUseCase.execute(productData);
+    const createdProduct = await createProductUseCase.execute(productData);
 
     expect(createdProduct).toBeDefined();
     expect(createdProduct.name).toBe(productData.name);
