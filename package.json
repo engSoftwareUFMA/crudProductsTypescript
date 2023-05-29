@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/engSoftwareUFMA/crudProductsTypescript#readme",
   "devDependencies": {
+    "prisma": "^4.14.1",
     "typescript": "^5.0.4",
     "vitest": "^0.31.1"
   },
