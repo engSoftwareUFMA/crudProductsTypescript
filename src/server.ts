@@ -1,6 +1,17 @@
 import express from 'express';
+import { ProductRepository } from './repositories/ProductRepository';
+import { CreateProductController } from './useCases/createProductUseCase/CreateProductController';
+import { CreateProductUseCase } from './useCases/createProductUseCase/CreateProductUseCase';
 
 const app = express();
 
+app.use(express.json());
 
-app.listen(3333, () => console.log('Server rodando na porta 3333!'));
+app.post('/products', (request, response) => {
+  const productRepository = new ProductRepository();
+  const createProductUseCase = new CreateProductUseCase(productRepository);
+  const createProductController = new CreateProductController(createProductUseCase);
+  createProductController.handle(request, response);
+});
+
+app.listen(8091, () => console.log('Server rodando na porta 8091!'));
