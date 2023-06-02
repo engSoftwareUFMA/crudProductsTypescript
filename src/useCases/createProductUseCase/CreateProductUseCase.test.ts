@@ -1,23 +1,57 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it,beforeEach } from 'vitest'
 import { ProductRepository } from '../../repositories/ProductRepository'
 import { CreateProductUseCase } from './CreateProductUseCase'
+import { Product } from '@prisma/client';
 
+describe('CreateProductUseCase', () => {
+  let createProductUseCase: CreateProductUseCase;
+  let productRepository: ProductRepository;
 
-describe("Create Product Use Case", () => {
-  test("Should be able to create a new product", async () => {
-    const productRepository = new ProductRepository();
-    const createProductUseCase = new CreateProductUseCase(productRepository);
+  beforeEach(() => {
+    productRepository = new ProductRepository();
+    createProductUseCase = new CreateProductUseCase(productRepository);
+  });
 
-    const productData = { name: "Product Name", description: "Product Description", price: 1000 };
+  
+    it('should create a product if all required fields are provided', async () => {
+      const createProductUseCaseDTO = {
+        name: 'Test Product',
+        description: 'Test description',
+        price: 10,
+      };
 
-    const createdProduct = await createProductUseCase.execute(productData);
+      const createdProduct = await createProductUseCase.execute(createProductUseCaseDTO);
 
-    expect(createdProduct).toBeDefined();
-    expect(createdProduct.name).toBe(productData.name);
-    expect(createdProduct.description).toBe(productData.description);
-    expect(createdProduct.price).toBe(productData.price);
+      expect(createdProduct.name).toBe(createProductUseCaseDTO.name);
+      expect(createdProduct.description).toBe(createProductUseCaseDTO.description);
+      expect(createdProduct.price).toBe(createProductUseCaseDTO.price);
+    });
 
-  })
-}
-)
-
+    it('should throw an error if name is not passed', async () => {
+      const createProductUseCaseDTO = {
+        name: '',
+        description: '10kg de roupas',
+        price: 10,
+      };
+  
+      await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Name is required');
+    })
+    it('should throw an error if description is not passed', async () => {
+      const createProductUseCaseDTO = {
+        name: 'Maquina de lavar',
+        description: '',
+        price: 10,
+      };
+  
+      await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Description is required');
+    })
+    it('should throw an error if price is not passed', async () => {
+      const createProductUseCaseDTO = {
+        name: 'Maquina de lavar',
+        description: '10kg de roupas',
+        price: 0,
+      };
+  
+      await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Price is required');
+    })
+  });
