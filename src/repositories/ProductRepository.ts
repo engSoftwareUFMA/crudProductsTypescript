@@ -1,28 +1,21 @@
+import { Product } from '@prisma/client';
 import { prisma } from '../../prisma/client';
 import { CreateProductUseCaseDTO } from '../dtos/CreateProductUseDTO';
-import { Product } from '../models/product';
 
-export interface IProductRepository {
-  create({ name, description, price }: CreateProductUseCaseDTO): Promise<void>
-
-  list(): Promise<Product[]>
-}
+import { IProductRepository } from './IProductRepository';
 
 
-export class ProductRepository {
+
+export class ProductRepository implements IProductRepository{
   async create({ name, description, price }: CreateProductUseCaseDTO): Promise<Product> {
-    const product = prisma.product.create({ data: { name, description, price } })
+    const product = await prisma.product.create({ data: { name, description, price } })
+
     return product
   }
 
   async list(): Promise<Product[]> {
-    const products = prisma.product.findMany()
+    const products = await prisma.product.findMany()
     return products
-  }
-
-  async findByName(name: string): Promise<Product | null> {
-    const product = prisma.product.findFirst({ where: { name } })
-    return product
   }
 
 }
