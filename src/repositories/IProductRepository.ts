@@ -1,10 +1,8 @@
-import { Product } from '@prisma/client'
-import { CreateProductUseCaseDTO } from '../dtos/CreateProductUseDTO'
-
+import { Product } from '../models/product'
 
 export interface IProductRepository {
-  create({ name, description, price }: CreateProductUseCaseDTO): Promise<void>
+  create(name: string, description: string, price: number): Promise<void>
 
   list(): Promise<Product[]>
-}
 
+}
