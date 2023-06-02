@@ -1,4 +1,4 @@
-import { describe, expect, it,beforeEach } from 'vitest'
+import { describe, expect, it,beforeEach, afterEach } from 'vitest'
 import { ProductRepository } from '../../repositories/ProductRepository'
 import { CreateProductUseCase } from './CreateProductUseCase'
 import { Product } from '@prisma/client';
@@ -54,4 +54,7 @@ describe('CreateProductUseCase', () => {
   
       await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Price is required');
     })
+    afterEach(() => {
+      productRepository.deleteAll()
+    });
   });
