@@ -12,10 +12,14 @@ export class ProductRepository implements IProductRepository{
 
     return product
   }
-
   async list(): Promise<Product[]> {
     const products = await prisma.product.findMany()
     return products
   }
+
+  async deleteAll(): Promise<void> {
+    await prisma.product.deleteMany()
+  }
+  
 
 }

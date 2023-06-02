@@ -6,4 +6,6 @@ export interface IProductRepository {
   create({ name, description, price }: CreateProductUseCaseDTO): Promise<Product>
 
   list(): Promise<Product[]>
+
+  deleteAll(): Promise<void>
 }

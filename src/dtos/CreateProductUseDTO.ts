@@ -1,5 +1,5 @@
 export interface CreateProductUseCaseDTO {
-  name: string;
+  name: string ;
   description: string;
   price: number;
 }
