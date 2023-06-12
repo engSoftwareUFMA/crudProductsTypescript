@@ -1,8 +1,8 @@
-import { CreateProductUseCaseDTO } from '../../dtos/CreateProductUseDTO';
+import { CreateProductUseCaseDTO } from '../../dtos/CreateProductUseCaseDTO';
 import { ProductRepository } from '../../repositories/ProductRepository';
 
 export class CreateProductUseCase {
-  constructor(private readonly productRepository: ProductRepository) {}
+  constructor(private readonly productRepository: ProductRepository) { }
 
   async execute({ name, description, price }: CreateProductUseCaseDTO) {
     if (!name) {
