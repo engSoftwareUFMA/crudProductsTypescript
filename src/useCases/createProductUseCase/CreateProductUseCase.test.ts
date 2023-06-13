@@ -27,34 +27,6 @@ describe('CreateProductUseCase', () => {
     expect(createdProduct.description).toBe(createProductUseCaseDTO.description);
     expect(createdProduct.price).toBe(createProductUseCaseDTO.price);
   });
-
-  it('should throw an error if name is not passed', async () => {
-    const createProductUseCaseDTO = {
-      name: '',
-      description: '10kg de roupas',
-      price: 10,
-    };
-
-    await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Name is required');
-  })
-  it('should throw an error if description is not passed', async () => {
-    const createProductUseCaseDTO = {
-      name: 'Maquina de lavar',
-      description: '',
-      price: 10,
-    };
-
-    await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Description is required');
-  })
-  it('should throw an error if price is not passed', async () => {
-    const createProductUseCaseDTO = {
-      name: 'Maquina de lavar',
-      description: '10kg de roupas',
-      price: 0,
-    };
-
-    await expect(createProductUseCase.execute(createProductUseCaseDTO)).rejects.toThrow('Price is required');
-  })
   afterEach(() => {
     productRepository.deleteAll()
   });

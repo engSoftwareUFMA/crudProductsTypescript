@@ -13,10 +13,9 @@ describe('DeleteProductUseCase', () => {
 
 
   it('should return an error message when deletion fails', async () => {
-    // Arrange
+
     const nonExistingProductId = '456'
 
-    // Act and Assert
     await expect(deleteProductUseCase.execute(nonExistingProductId)).rejects.toThrow('Produto não encontrado!')
 
     afterEach(() => {
