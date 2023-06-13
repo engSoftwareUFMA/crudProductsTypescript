@@ -1,5 +1,5 @@
 import { Product } from '@prisma/client'
-import { CreateProductUseCaseDTO } from '../dtos/CreateProductUseDTO'
+import { CreateProductUseCaseDTO } from '../dtos/CreateProductUseCaseDTO'
 
 
 export interface IProductRepository {
@@ -8,4 +8,10 @@ export interface IProductRepository {
   list(): Promise<Product[]>
 
   deleteAll(): Promise<void>
+
+  findById(id: string): Promise<Product | null>
+
+  update(id: string, { name, description, price }: CreateProductUseCaseDTO): Promise<void>
+
+  delete(id: string): Promise<void>
 }

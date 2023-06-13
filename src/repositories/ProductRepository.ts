@@ -30,5 +30,7 @@ export class ProductRepository implements IProductRepository {
     await prisma.product.deleteMany()
   }
 
-
+  async delete(id: string): Promise<void> {
+    await prisma.product.delete({ where: { id } })
+  }
 }

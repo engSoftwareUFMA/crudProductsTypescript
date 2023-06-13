@@ -2,6 +2,8 @@ import express from 'express';
 import { ProductRepository } from './repositories/ProductRepository';
 import { CreateProductController } from './useCases/createProductUseCase/CreateProductController';
 import { CreateProductUseCase } from './useCases/createProductUseCase/CreateProductUseCase';
+import { DeleteProductController } from './useCases/deleteProductUseCase/DeleteProductController';
+import { DeleteProductUseCase } from './useCases/deleteProductUseCase/DeleteProductUseCase';
 import { ListProductsController } from './useCases/listProductsUseCase/ListProductsController';
 import { ListProductsUseCase } from './useCases/listProductsUseCase/ListProductsUseCase';
 import { UpdateProductController } from './useCases/updateProductUseCase/UpdateProductController';
@@ -30,6 +32,13 @@ app.put('/products/:id', (request, response) => {
   const updateProductUseCase = new UpdateProductUseCase(productRepository);
   const updateProductController = new UpdateProductController(updateProductUseCase);
   updateProductController.handle(request, response);
+});
+
+app.delete('/products/:id', (request, response) => {
+  const productRepository = new ProductRepository();
+  const deleteProductUseCase = new DeleteProductUseCase(productRepository);
+  const deleteProductController = new DeleteProductController(deleteProductUseCase);
+  deleteProductController.handle(request, response);
 });
 
 app.listen(8091, () => console.log('Server rodando na porta 8091!'));
