@@ -1,5 +1,5 @@
 UFMA - Universidade Federal do Maranhão
-CRUD de produtos para disciplina de Engenharia de Software
+CRUD de produtos utilizando TDD para disciplina de Engenharia de Software
 Equipe desenvolvedora: Vitor Nunes, Bertoldo Klinger, Rhaynon Carvalho
 Projeto adiciona, atualiza, deleta e lista produtos de acordo com o desejo do usuário.
 
